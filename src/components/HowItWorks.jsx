@@ -9,6 +9,17 @@ const HowItWorks = () => {
     const videoRef = useRef();
 
     useGSAP(() => {
+        gsap.to('.gameVideo', {
+            scrollTrigger: {
+                trigger: '.gameVideo',
+                toggleActions: 'play pause reverse restart',
+                start: '10% bottom',
+            },
+            onComplete: () => {
+                videoRef.current.play();
+            }
+        })
+
         gsap.from('#chip', {
             scrollTrigger: {
                 trigger: '#chip',
@@ -54,8 +65,8 @@ const HowItWorks = () => {
                                 className='bg-transparent relative z-10'
                             />
                         </div>
-                        <div className='hiw-video'>
-                            <video className='pointer-events-none' playsInline
+                        <div className='hiw-video '>
+                            <video className='pointer-events-none gameVideo' playsInline
                                 preload='none' muted autoPlay
                                 ref={videoRef}
                             >
